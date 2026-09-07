@@ -7,7 +7,7 @@
    =================================================================== */
 const PRODUCTS = [
   {
-    id: "turquoise-circle",
+    id: "turquoise-circle-neclace",
     name: "Turquoise circle Necklace",
     category: "necklaces",
     jpegrice: 500,
@@ -18,8 +18,8 @@ const PRODUCTS = [
     featured: true
   },
   {
-    id: "earth-love",
-    name: "earth love",
+    id: "earth-love-neclace",
+    name: "earth love necklace",
     category: "necklaces",
     price: 350,
     img: "./images/earth love necklace.jpeg",
@@ -29,7 +29,7 @@ const PRODUCTS = [
   },
   {
     id: "aribian night set",
-    name: "aribian night set",
+    name: "Aribian night set",
     category: ["earrings" , "necklaces" ],
 
     price: 780,
@@ -39,7 +39,7 @@ const PRODUCTS = [
   },
   {
     id: "moon-necklace",
-    name: "Moon Necklace",
+    name: "Moon stainless necklace",
     category: "necklaces",
     price: 200,
     img: "./images/moon stainless necklaces.jpeg",
@@ -47,8 +47,8 @@ const PRODUCTS = [
     desc: "A moon stainless charm — quiet on its own, layered beautifully with anything bolder."
   },
   {
-    id: "layered-charm",
-    name: "Layered Charm Necklace",
+    id: "seashell-charm",
+    name: "seashell Necklace",
     category: "necklaces",
     price: 800,
     img: "./images/seashell necklace.jpeg",
@@ -57,8 +57,8 @@ const PRODUCTS = [
     featured: true
   },
   {
-    id: "sea-pearls-choker",
-    name: "Sea pearls Beaded Choker",
+    id: "pearls-neght-choker",
+    name: "pearls neght  Choker",
     category: "chokers",
     price: 460,
     img: "./images/pearls neght chocker.jpeg",
@@ -66,8 +66,8 @@ const PRODUCTS = [
     desc: "Sits close to the collarbone in cool sea-glass tones. Pairs well with an open collar or bare shoulders."
   },
   {
-    id: "golden-hour",
-    name: "golden hour necklace",
+    id: "gold-hour",
+    name: "gold hour necklace",
     category: "necklaces",
     price: 550,
     img: "./images/gold hour nechlace.jpeg",
@@ -76,7 +76,7 @@ const PRODUCTS = [
     featured: true
   },
   {
-    id: "blue-mermaide",
+    id: "mermaide-necklace",
     name: "mermaide necklace",
     category: "neclaces",
     price: 300,
