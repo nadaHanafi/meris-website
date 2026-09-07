@@ -11,7 +11,7 @@ const PRODUCTS = [
     name: "Turquoise circle Necklace",
     category: "necklaces",
     price: 500,
-    img: ""turquoise%20circle%20necklace.jpeg",
+    img: "turquoise%20circle%20necklace.jpeg",
 
     ph: ["#1F6E6B", "#0E3634"],
     desc: "A bold single-strand statement piece in hand-selected turquoise beads. Worn long over a plain neckline, it does the talking on its own.",
