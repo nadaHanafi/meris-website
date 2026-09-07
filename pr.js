@@ -11,7 +11,7 @@ const PRODUCTS = [
     name: "Turquoise circle Necklace",
     category: "necklaces",
     jpegrice: 500,
-    img: "./images/turquoise circle necklace.jpeg",
+    img: "turquoise circle necklace.jpeg",
 
     ph: ["#1F6E6B", "#0E3634"],
     desc: "A bold single-strand statement piece in hand-selected turquoise beads. Worn long over a plain neckline, it does the talking on its own.",
@@ -22,7 +22,7 @@ const PRODUCTS = [
     name: "earth love necklace",
     category: "necklaces",
     price: 350,
-    img: "./images/earth love necklace.jpeg",
+    img: "earth love necklace.jpeg",
     ph: ["#8B2635", "#3A0F16"],
     desc: "Delicate coral-toned beads . A softer statement for someone who likes their bold understated.",
     featured: true
@@ -33,7 +33,7 @@ const PRODUCTS = [
     category: ["earrings" , "necklaces" ],
 
     price: 780,
-    img: "./images/arabian night set.jpeg",
+    img: "arabian night set.jpeg",
     ph: ["#241119", "#0C0509"],
     desc: "Faceted black beads on a fine gold-tone wire. Lightweight enough for all day, striking enough for the evening."
   },
@@ -42,7 +42,7 @@ const PRODUCTS = [
     name: "Moon stainless necklace",
     category: "necklaces",
     price: 200,
-    img: "./images/moon stainless necklaces.jpeg",
+    img: "moon stainless necklaces.jpeg",
     ph: ["#4B1030", "#1C0817"],
     desc: "A moon stainless charm — quiet on its own, layered beautifully with anything bolder."
   },
@@ -51,7 +51,7 @@ const PRODUCTS = [
     name: "seashell Necklace",
     category: "necklaces",
     price: 800,
-    img: "./images/seashell necklace.jpeg",
+    img: "seashell necklace.jpeg",
     ph: ["#6B4A1F", "#2A1A0A"],
     desc: "Multiple strands finished with mixed medallion charms. The most statement piece in the collection — meant to be seen.",
     featured: true
@@ -61,7 +61,7 @@ const PRODUCTS = [
     name: "pearls neght  Choker",
     category: "chokers",
     price: 460,
-    img: "./images/pearls neght chocker.jpeg",
+    img: "pearls neght chocker.jpeg",
     ph: ["#2D6B62", "#0F2E28"],
     desc: "Sits close to the collarbone in cool sea-glass tones. Pairs well with an open collar or bare shoulders."
   },
@@ -70,7 +70,7 @@ const PRODUCTS = [
     name: "gold hour necklace",
     category: "necklaces",
     price: 550,
-    img: "./images/gold hour nechlace.jpeg",
+    img: "gold hour nechlace.jpeg",
     ph: ["#6E1F2E", "#2A0A11"],
     desc: "a golden hour beads on a fitted neclace length, gives the feeling of sunset.",
     featured: true
@@ -80,7 +80,7 @@ const PRODUCTS = [
     name: "mermaide necklace",
     category: "neclaces",
     price: 300,
-    img: "./images/mermaide necklace.jpeg",
+    img: "mermaide necklace.jpeg",
     ph: ["#8A5A1E", "#3A250A"],
     desc: "a beab mermaide blue neclace . gives you the feeling of the sea."
   }
