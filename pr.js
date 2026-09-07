@@ -30,7 +30,7 @@ const PRODUCTS = [
   {
     id: "aribian night set",
     name: "Aribian night set",
-    category: ["earrings" , "necklaces" ],
+    category: "necklaces",
 
     price: 780,
     img: "arabian night set.jpeg",
