@@ -10,7 +10,7 @@ const PRODUCTS = [
     id: "turquoise-circle-neclace",
     name: "Turquoise circle Necklace",
     category: "necklaces",
-    jpegrice: 500,
+    price: 500,
     img: ""turquoise%20circle%20necklace.jpeg",
 
     ph: ["#1F6E6B", "#0E3634"],
