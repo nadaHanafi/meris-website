@@ -60,7 +60,7 @@ const PRODUCTS = [
     id: "pearls-neght-choker",
     name: "pearls neght  Choker",
     category: "chokers",
-    price: 460,
+    price: 100,
     img: "pearls neght chocker.jpeg",
     ph: ["#2D6B62", "#0F2E28"],
     desc: "Sits close to the collarbone in cool sea-glass tones. Pairs well with an open collar or bare shoulders."
