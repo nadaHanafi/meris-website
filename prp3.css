@@ -1,0 +1,19 @@
+/* ===================================================================
+   MERIS — contact.css
+   Page-specific styles for contact.html only.
+   =================================================================== */
+.contact-section{ max-width:var(--max); margin:0 auto; padding:90px var(--edge) 110px; }
+.contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+@media (max-width:760px){ .contact-grid{ grid-template-columns:1fr; } }
+.contact-card{
+  background:var(--ivory-dim); border:1px solid rgba(75,16,48,.12);
+  border-radius:2px; padding:34px;
+}
+.contact-card h3{ font-size:1.2rem; color:var(--wine); margin-bottom:14px; }
+.contact-card p{ color:var(--ink-soft); font-size:.92rem; margin-bottom:18px; }
+.contact-link-list a{
+  display:flex; align-items:center; gap:10px;
+  padding:12px 0; border-top:1px solid rgba(75,16,48,.1);
+  font-size:.92rem; color:var(--wine);
+}
+.contact-link-list a:hover{ color:var(--gold); }

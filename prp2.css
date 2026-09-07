@@ -1,0 +1,8 @@
+/* ===================================================================
+   MERIS — story.css
+   Page-specific styles for story.html only.
+   =================================================================== */
+.story-page-body{ max-width:720px; margin:0 auto; padding:90px var(--edge) 110px; }
+.story-page-body p{ color:var(--ink-soft); font-size:1rem; margin-bottom:22px; line-height:1.85; }
+.story-page-body h2{ font-size:1.5rem; color:var(--wine); margin:50px 0 18px; }
+.story-signoff{ font-family:var(--display); font-style:italic; font-size:1.2rem; color:var(--wine); margin-top:40px; }

@@ -1,0 +1,305 @@
+/* ===================================================================
+   MERIS — base.css
+   Shared across every page: design tokens, reset, header, footer,
+   cart drawer, quick-view modal, product card styles, and the
+   internal page banner used by shop/story/custom/contact.
+   =================================================================== */
+:root{
+  --wine:        #4B1030;
+  --wine-deep:   #240817;
+  --wine-soft:   #641A44;
+  --gold:        #C9A24B;
+  --gold-soft:   #E4C983;
+  --ivory:       #F5ECDF;
+  --ivory-dim:   #EADFCC;
+  --ink:         #2A1420;
+  --ink-soft:    #6B5560;
+
+  --display: "Cormorant Garamond", serif;
+  --body: "Jost", sans-serif;
+
+  --max: 1180px;
+  --edge: clamp(20px, 5vw, 64px);
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
+
+body{
+  margin:0;
+  background:var(--ivory);
+  color:var(--ink);
+  font-family:var(--body);
+  font-weight:300;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3{ font-family:var(--display); font-weight:500; margin:0; color:inherit; }
+p{ margin:0; }
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+button{ font-family:inherit; background:none; border:none; cursor:pointer; color:inherit; }
+
+:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+/* ===================================================================
+   BUTTONS
+   =================================================================== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 34px;
+  font-family:var(--body);
+  font-size:.95rem;
+  letter-spacing:.03em;
+  border-radius:2px;
+  transition:background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
+  cursor:pointer;
+}
+.btn-gold{ background:var(--gold); color:var(--wine-deep); border:1px solid var(--gold); }
+.btn-gold:hover{ background:var(--gold-soft); border-color:var(--gold-soft); }
+.btn-outline{ background:transparent; color:var(--ivory); border:1px solid var(--gold); }
+.btn-outline:hover{ background:var(--gold); color:var(--wine-deep); }
+.btn-block{ width:100%; }
+
+/* ===================================================================
+   HEADER
+   =================================================================== */
+.site-header{
+  position:sticky; top:0; z-index:40;
+  background:rgba(36,8,23,.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(201,162,75,.25);
+}
+.header-inner{
+  max-width:var(--max); margin:0 auto; padding:0 var(--edge);
+  height:74px; display:flex; align-items:center; justify-content:space-between;
+  color:var(--ivory);
+}
+.brand-mark{ display:flex; align-items:center; gap:10px; color:var(--gold); }
+.logo-img{ height:42px; width:42px; border-radius:50%; object-fit:cover; display:block; }
+.brand-word{ font-family:var(--display); font-size:1.5rem; letter-spacing:.06em; color:var(--ivory); }
+
+.main-nav{ display:flex; gap:36px; }
+.main-nav a{ font-size:.92rem; letter-spacing:.02em; color:var(--ivory); position:relative; padding:4px 0; }
+.main-nav a::after{
+  content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--gold);
+  transition:width .3s var(--ease);
+}
+.main-nav a:hover::after{ width:100%; }
+.main-nav a.is-current{ color:var(--gold-soft); }
+.main-nav a.is-current::after{ width:100%; }
+
+.header-actions{ display:flex; align-items:center; gap:20px; }
+.cart-toggle{ position:relative; color:var(--ivory); display:flex; }
+.cart-count{
+  position:absolute; top:-8px; right:-10px;
+  background:var(--gold); color:var(--wine-deep);
+  font-size:.65rem; font-weight:600; border-radius:50%;
+  width:17px; height:17px; display:flex; align-items:center; justify-content:center;
+}
+.nav-toggle{ display:none; flex-direction:column; gap:5px; width:24px; }
+.nav-toggle span{ height:1.5px; background:var(--ivory); width:100%; transition:transform .25s, opacity .25s; }
+
+@media (max-width: 860px){
+  .main-nav{
+    position:absolute; top:74px; left:0; right:0;
+    background:var(--wine-deep);
+    flex-direction:column; gap:0;
+    max-height:0; overflow:hidden;
+    transition:max-height .35s var(--ease);
+  }
+  .main-nav.is-open{ max-height:320px; }
+  .main-nav a{ padding:16px var(--edge); border-top:1px solid rgba(201,162,75,.15); }
+  .nav-toggle{ display:flex; }
+}
+
+/* ===================================================================
+   INTERNAL PAGE HEADER (shop / story / custom / contact)
+   =================================================================== */
+.page-header{
+  background:radial-gradient(120% 140% at 50% -20%, var(--wine-soft) 0%, var(--wine) 50%, var(--wine-deep) 100%);
+  color:var(--ivory);
+  text-align:center;
+  padding:70px var(--edge) 60px;
+}
+.page-header h1{
+  font-size:clamp(2.4rem, 5vw, 3.2rem);
+  color:var(--gold-soft);
+  letter-spacing:.03em;
+  margin-bottom:14px;
+}
+.page-header p{
+  max-width:520px; margin:0 auto;
+  font-size:.95rem; color:var(--ivory-dim);
+}
+
+/* ===================================================================
+   PRODUCT GRID + CARD
+   Shared by the homepage "featured" teaser and the full shop grid.
+   =================================================================== */
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:6px 22px;
+}
+@media (max-width:980px){ .product-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .product-grid{ grid-template-columns:1fr; } }
+
+.product-card{ cursor:pointer; }
+.product-card:nth-child(4n+2){ margin-top:56px; }
+.product-card:nth-child(4n+4){ margin-top:26px; }
+@media (max-width:980px){ .product-card:nth-child(4n+2), .product-card:nth-child(4n+4){ margin-top:0; } }
+
+.product-photo{
+  position:relative;
+  aspect-ratio:4/5;
+  border-radius:2px;
+  overflow:hidden;
+  background:linear-gradient(155deg, var(--ph-a, #641A44), var(--ph-b, #240817));
+  margin-bottom:14px;
+}
+.product-photo img{ width:100%; height:100%; object-fit:cover; }
+.product-photo .ph-mark{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  color:rgba(228,201,131,.35); font-family:var(--display); font-size:2.6rem; letter-spacing:.1em;
+}
+.product-quick{
+  position:absolute; right:10px; bottom:10px;
+  width:38px; height:38px; border-radius:50%;
+  background:rgba(245,236,224,.92); color:var(--wine);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; line-height:1;
+  opacity:0; transform:translateY(6px);
+  transition:opacity .25s var(--ease), transform .25s var(--ease);
+}
+.product-card:hover .product-quick,
+.product-card:focus-within .product-quick{ opacity:1; transform:translateY(0); }
+
+.product-cat{ font-size:.72rem; letter-spacing:.06em; color:var(--ink-soft); text-transform:uppercase; margin-bottom:4px; }
+.product-name{ font-family:var(--display); font-size:1.15rem; color:var(--ink); margin-bottom:4px; }
+.product-price{ font-size:.88rem; color:var(--wine); }
+
+.product-card.is-hidden{ display:none; }
+
+/* ===================================================================
+   CUSTOM ORDERS CTA BANNER (used on Home and Our Story)
+   =================================================================== */
+.custom{
+  background:var(--ivory-dim);
+  border-top:1px solid rgba(75,16,48,.12);
+  border-bottom:1px solid rgba(75,16,48,.12);
+}
+.custom-inner{
+  max-width:600px; margin:0 auto; text-align:center;
+  padding:100px var(--edge);
+}
+.custom h2{ font-size:clamp(1.8rem,3vw,2.3rem); color:var(--wine); margin-bottom:20px; }
+.custom p{ color:var(--ink-soft); margin-bottom:34px; font-size:.98rem; }
+.custom .btn-outline{ color:var(--wine); border-color:var(--wine); }
+.custom .btn-outline:hover{ background:var(--wine); color:var(--ivory); }
+
+/* ===================================================================
+   FOOTER
+   =================================================================== */
+.site-footer{ background:var(--wine-deep); color:var(--ivory); padding:80px var(--edge) 30px; }
+.footer-inner{
+  max-width:var(--max); margin:0 auto;
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:50px;
+  padding-bottom:50px; border-bottom:1px solid rgba(201,162,75,.2);
+}
+.footer-brand .logo-img{ width:60px; height:60px; border-radius:50%; object-fit:cover; margin-bottom:14px; }
+.footer-word{ font-family:var(--display); font-size:1.6rem; color:var(--gold-soft); }
+.footer-loc{ font-size:.82rem; color:rgba(245,236,224,.6); margin-top:6px; }
+.footer-links{ display:flex; gap:70px; }
+.footer-links h3{ font-family:var(--body); font-weight:500; font-size:.82rem; letter-spacing:.04em; color:var(--gold); margin-bottom:14px; }
+.footer-links a{ display:block; font-size:.9rem; color:rgba(245,236,224,.8); margin-bottom:10px; }
+.footer-links a:hover{ color:var(--gold-soft); }
+.footer-fine{ max-width:var(--max); margin:26px auto 0; font-size:.75rem; color:rgba(245,236,224,.45); text-align:center; }
+
+/* ===================================================================
+   CART DRAWER
+   =================================================================== */
+.cart-overlay, .pv-overlay{
+  position:fixed; inset:0; background:rgba(36,8,23,.55);
+  opacity:0; pointer-events:none; transition:opacity .3s var(--ease);
+  z-index:60;
+}
+.cart-overlay.is-open, .pv-overlay.is-open{ opacity:1; pointer-events:auto; }
+
+.cart-drawer{
+  position:fixed; top:0; right:0; height:100%;
+  width:min(420px, 92vw);
+  background:var(--wine-deep); color:var(--ivory);
+  transform:translateX(100%);
+  transition:transform .35s var(--ease);
+  z-index:61;
+  display:flex; flex-direction:column;
+}
+.cart-drawer.is-open{ transform:translateX(0); }
+.cart-head{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 26px 20px; border-bottom:1px solid rgba(201,162,75,.2);
+}
+.cart-head h2{ font-size:1.4rem; color:var(--gold-soft); }
+.cart-close{ font-size:1.6rem; color:var(--ivory); line-height:1; }
+.cart-items{ flex:1; overflow-y:auto; padding:20px 26px; }
+.cart-empty{ color:rgba(245,236,224,.6); font-size:.9rem; margin-top:20px; }
+
+.cart-line{ display:flex; gap:14px; padding:16px 0; border-bottom:1px solid rgba(201,162,75,.12); }
+.cart-line-photo{
+  width:64px; height:76px; border-radius:2px; flex-shrink:0;
+  background:linear-gradient(155deg, var(--ph-a, #641A44), var(--ph-b, #240817));
+}
+.cart-line-info{ flex:1; }
+.cart-line-name{ font-family:var(--display); font-size:1.02rem; color:var(--ivory); }
+.cart-line-price{ font-size:.82rem; color:rgba(245,236,224,.6); margin-top:2px; }
+.cart-line-qty{ display:flex; align-items:center; gap:10px; margin-top:10px; }
+.qty-btn{
+  width:22px; height:22px; border:1px solid rgba(201,162,75,.4); border-radius:50%;
+  display:flex; align-items:center; justify-content:center; font-size:.85rem; color:var(--gold-soft);
+}
+.cart-line-remove{ font-size:.75rem; color:rgba(245,236,224,.45); margin-top:8px; letter-spacing:.02em; }
+.cart-line-remove:hover{ color:var(--gold-soft); }
+
+.cart-footer{ padding:22px 26px 30px; border-top:1px solid rgba(201,162,75,.2); }
+.cart-subtotal{
+  display:flex; justify-content:space-between; font-size:1rem;
+  margin-bottom:18px; color:var(--gold-soft);
+  font-family:var(--display);
+}
+.cart-note{ font-size:.72rem; color:rgba(245,236,224,.45); margin-top:12px; text-align:center; }
+
+/* ===================================================================
+   PRODUCT QUICK VIEW MODAL
+   =================================================================== */
+.pv-modal{
+  position:fixed; top:50%; left:50%;
+  transform:translate(-50%,-50%) scale(.96);
+  width:min(760px, 92vw); max-height:88vh; overflow:auto;
+  background:var(--ivory); border-radius:2px;
+  display:grid; grid-template-columns:1fr 1fr;
+  opacity:0; pointer-events:none;
+  transition:opacity .3s var(--ease), transform .3s var(--ease);
+  z-index:62;
+}
+.pv-modal.is-open{ opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1); }
+.pv-photo{
+  aspect-ratio:4/5;
+  background:linear-gradient(155deg, var(--ph-a, #641A44), var(--ph-b, #240817));
+}
+.pv-info{ padding:44px 38px; display:flex; flex-direction:column; }
+.pv-cat{ font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px; }
+.pv-info h3{ font-size:1.7rem; color:var(--wine); margin-bottom:10px; }
+.pv-price{ font-size:1.05rem; color:var(--gold); margin-bottom:18px; font-family:var(--display); }
+.pv-desc{ font-size:.92rem; color:var(--ink-soft); margin-bottom:30px; line-height:1.7; }
+.pv-close{ position:absolute; top:16px; right:20px; font-size:1.6rem; color:var(--ink); }
+@media (max-width:640px){ .pv-modal{ grid-template-columns:1fr; } .pv-photo{ aspect-ratio:16/10; } }
