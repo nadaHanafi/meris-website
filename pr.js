@@ -7,80 +7,80 @@
    =================================================================== */
 const PRODUCTS = [
   {
-    id: "turquoise-circle-neclace",
+    id: "turquoise-circle",
     name: "Turquoise circle Necklace",
     category: "necklaces",
-    price: 500,
-    img: "turquoise%20circle%20necklace.jpeg",
+    price: 400,
+    img: "./images/turquoise circle necklace.jpeg",
 
     ph: ["#1F6E6B", "#0E3634"],
     desc: "A bold single-strand statement piece in hand-selected turquoise beads. Worn long over a plain neckline, it does the talking on its own.",
     featured: true
   },
   {
-    id: "earth-love-neclace",
-    name: "earth love necklace",
+    id: "earth-love",
+    name: "earth love",
     category: "necklaces",
-    price: 350,
-    img: "earth love necklace.jpeg",
+    price: 550,
+    img: "./images/earth love necklace.jpeg",
     ph: ["#8B2635", "#3A0F16"],
-    desc: "Delicate coral-toned beads . A softer statement for someone who likes their bold understated.",
+    desc: "Delicate brown-toned beads . A softer statement for someone who likes their bold understated.",
     featured: true
   },
   {
-    id: "aribian night set",
-    name: "Aribian night set",
+    id: "arabian night set",
+    name: "arabian night set",
     category: "necklaces",
 
-    price: 780,
-    img: "arabian night set.jpeg",
+    price: 760,
+    img: "./images/arabian night set.jpeg",
     ph: ["#241119", "#0C0509"],
     desc: "Faceted black beads on a fine gold-tone wire. Lightweight enough for all day, striking enough for the evening."
   },
   {
     id: "moon-necklace",
-    name: "Moon stainless necklace",
+    name: "Moon Necklace",
     category: "necklaces",
     price: 200,
-    img: "moon stainless necklaces.jpeg",
+    img: "./images/moon stainless necklaces.jpeg",
     ph: ["#4B1030", "#1C0817"],
     desc: "A moon stainless charm — quiet on its own, layered beautifully with anything bolder."
   },
   {
-    id: "seashell-charm",
-    name: "seashell Necklace",
+    id: "layered-charm",
+    name: "Layered Charm Necklace",
     category: "necklaces",
-    price: 800,
-    img: "seashell necklace.jpeg",
+    price: 550,
+    img: "./images/seashell necklace.jpeg",
     ph: ["#6B4A1F", "#2A1A0A"],
     desc: "Multiple strands finished with mixed medallion charms. The most statement piece in the collection — meant to be seen.",
     featured: true
   },
   {
-    id: "pearls-neght-choker",
-    name: "pearls neght  Choker",
+    id: "sea-pearls-choker",
+    name: "Sea pearls Beaded Choker",
     category: "chokers",
     price: 100,
-    img: "pearls neght chocker.jpeg",
+    img: "./images/pearls neght chocker.jpeg",
     ph: ["#2D6B62", "#0F2E28"],
     desc: "Sits close to the collarbone in cool sea-glass tones. Pairs well with an open collar or bare shoulders."
   },
   {
-    id: "gold-hour",
-    name: "gold hour necklace",
+    id: "golden-hour",
+    name: "golden hour necklace",
     category: "necklaces",
     price: 550,
-    img: "gold hour nechlace.jpeg",
+    img: "./images/gold hour nechlace.jpeg",
     ph: ["#6E1F2E", "#2A0A11"],
     desc: "a golden hour beads on a fitted neclace length, gives the feeling of sunset.",
     featured: true
   },
   {
-    id: "mermaide-necklace",
+    id: "mermaide",
     name: "mermaide necklace",
     category: "neclaces",
-    price: 300,
-    img: "mermaide necklace.jpeg",
+    price: 550,
+    img: "./images/mermaide necklace.jpeg",
     ph: ["#8A5A1E", "#3A250A"],
     desc: "a beab mermaide blue neclace . gives you the feeling of the sea."
   }
@@ -92,7 +92,7 @@ const PRODUCTS = [
    so this posts to Formspree — a free form-backend service that
    forwards submissions straight to your inbox with no customer
    action beyond clicking the button.
-
+ 
    SETUP REQUIRED:
    1. Go to https://formspree.io and create a free account.
    2. Create a new form — Formspree gives you an endpoint that
@@ -102,7 +102,7 @@ const PRODUCTS = [
    sending, since there's nowhere real to send it yet.
    =================================================================== */
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/moeqknkg";
-
+ 
 function showToast(message){
   let toast = document.getElementById("site-toast");
   if (!toast){
@@ -122,15 +122,12 @@ function showToast(message){
   clearTimeout(toast._hideTimer);
   toast._hideTimer = setTimeout(() => { toast.style.opacity = "0"; }, 4500);
 }
-
+ 
 function sendOrderEmail(subject, message, button){
-  if (FORMSPREE_ENDPOINT.includes("REPLACE_WITH_YOUR_FORM_ID")){
-    showToast("Order form isn't connected yet — add your Formspree endpoint in script.js.");
-    return Promise.reject(new Error("Formspree endpoint not configured"));
-  }
+  // Remove the validation check completely - just go straight to sending
   const originalText = button ? button.textContent : null;
   if (button){ button.textContent = "Sending…"; button.style.pointerEvents = "none"; }
-
+ 
   return fetch(FORMSPREE_ENDPOINT, {
     method: "POST",
     headers: { "Accept": "application/json", "Content-Type": "application/json" },
@@ -149,8 +146,7 @@ function sendOrderEmail(subject, message, button){
       if (button){ button.textContent = originalText; button.style.pointerEvents = "auto"; }
     });
 }
-
-
+ 
 /* ===================================================================
    Cart state — persisted so it survives navigating between pages
    =================================================================== */
@@ -158,14 +154,13 @@ const CART_KEY = "meris_cart";
 let cart = [];
 try {
   cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-  
 } catch (e) {
   cart = [];
 }
 function saveCart(){
   try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {}
 }
-
+ 
 /* ===================================================================
    Render a product grid into any container
    =================================================================== */
@@ -174,62 +169,124 @@ function renderProductGrid(container, products){
   container.innerHTML = "";
   products.forEach(p => {
     const card = document.createElement("article");
-    card.className = "product-card";
+    card.className = "product-card" + (p.soldOut ? " is-sold-out" : "");
     card.dataset.category = p.category;
     card.dataset.id = p.id;
-
+ 
     card.innerHTML = `
       <div class="product-photo" style="--ph-a:${p.ph[0]}; --ph-b:${p.ph[1]};">
         ${p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy">` : `<span class="ph-mark">M</span>`}
-        <button class="product-quick" data-id="${p.id}" aria-label="Quick view ${p.name}">+</button>
+        ${p.soldOut ? `<span class="sold-out-badge">Sold Out</span>` : `<button class="product-quick" data-id="${p.id}" aria-label="Quick view ${p.name}">+</button>`}
       </div>
       <p class="product-cat">${p.category}</p>
       <h3 class="product-name">${p.name}</h3>
-      <p class="product-price">${p.price} EGP</p>
+      <p class="product-price">${p.soldOut ? "Sold out" : p.price + " EGP"}</p>
     `;
-
+ 
     card.addEventListener("click", (e) => {
       if (e.target.closest(".product-quick")) return;
       openQuickView(p.id);
     });
-    card.querySelector(".product-quick").addEventListener("click", (e) => {
-      e.stopPropagation();
-      openQuickView(p.id);
-    });
-
+    const quickBtn = card.querySelector(".product-quick");
+    if (quickBtn){
+      quickBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        openQuickView(p.id);
+      });
+    }
+ 
     container.appendChild(card);
   });
 }
-
+ 
 /* ===================================================================
-   Filtering (shop page only)
+   Shop page — category filter + pagination (shop page only)
+   Shows PRODUCTS_PER_PAGE items at a time, with numbered page buttons
+   (1, 2, 3…). Switching category resets back to page 1.
    =================================================================== */
-function initFilters(){
-  const filterTabs = document.getElementById("filter-tabs");
-  if (!filterTabs) return;
-  filterTabs.addEventListener("click", (e) => {
-    const tab = e.target.closest(".filter-tab");
-    if (!tab) return;
-    filterTabs.querySelectorAll(".filter-tab").forEach(t => {
-      t.classList.remove("is-active");
-      t.setAttribute("aria-selected", "false");
-    });
-    tab.classList.add("is-active");
-    tab.setAttribute("aria-selected", "true");
+const PRODUCTS_PER_PAGE = 8;
+let shopFilter = "all";
+let shopPage = 1;
 
-    const filter = tab.dataset.filter;
-    document.querySelectorAll(".product-card").forEach(card => {
-      const show = filter === "all" || card.dataset.category === filter;
-      card.classList.toggle("is-hidden", !show);
-    });
-  });
+function getFilteredProducts(){
+  return shopFilter === "all"
+    ? PRODUCTS
+    : PRODUCTS.filter(p => p.category === shopFilter);
 }
 
+function renderShopGrid(){
+  const grid = document.getElementById("product-grid");
+  const pager = document.getElementById("shop-pagination");
+  if (!grid) return;
+
+  const filtered = getFilteredProducts();
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PRODUCTS_PER_PAGE));
+  if (shopPage > totalPages) shopPage = totalPages;
+  if (shopPage < 1) shopPage = 1;
+
+  const start = (shopPage - 1) * PRODUCTS_PER_PAGE;
+  const pageItems = filtered.slice(start, start + PRODUCTS_PER_PAGE);
+  renderProductGrid(grid, pageItems);
+
+  if (pager){
+    pager.innerHTML = "";
+    if (totalPages > 1){
+      const makeBtn = (label, page, opts = {}) => {
+        const btn = document.createElement("button");
+        btn.className = "page-btn" + (opts.active ? " is-active" : "");
+        btn.textContent = label;
+        btn.setAttribute("aria-label", `Page ${page}`);
+        if (opts.disabled){
+          btn.disabled = true;
+        } else {
+          btn.addEventListener("click", () => {
+            shopPage = page;
+            renderShopGrid();
+            document.getElementById("shop")?.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        }
+        return btn;
+      };
+
+      pager.appendChild(makeBtn("‹ Prev", shopPage - 1, { disabled: shopPage === 1 }));
+      for (let i = 1; i <= totalPages; i++){
+        pager.appendChild(makeBtn(String(i), i, { active: i === shopPage }));
+      }
+      pager.appendChild(makeBtn("Next ›", shopPage + 1, { disabled: shopPage === totalPages }));
+    }
+  }
+}
+
+function initShopPage(){
+  const grid = document.getElementById("product-grid");
+  if (!grid) return; // not on the shop page
+
+  const filterTabs = document.getElementById("filter-tabs");
+  if (filterTabs){
+    filterTabs.addEventListener("click", (e) => {
+      const tab = e.target.closest(".filter-tab");
+      if (!tab) return;
+      filterTabs.querySelectorAll(".filter-tab").forEach(t => {
+        t.classList.remove("is-active");
+        t.setAttribute("aria-selected", "false");
+      });
+      tab.classList.add("is-active");
+      tab.setAttribute("aria-selected", "true");
+
+      shopFilter = tab.dataset.filter;
+      shopPage = 1;
+      renderShopGrid();
+    });
+  }
+
+  renderShopGrid();
+}
+ 
 /* ===================================================================
    Quick view modal
    =================================================================== */
 let activeProductId = null;
-
+ 
 function openQuickView(id){
   const pvOverlay = document.getElementById("pv-overlay");
   const pvModal = document.getElementById("pv-modal");
@@ -237,15 +294,24 @@ function openQuickView(id){
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
   activeProductId = id;
-
+ 
   const pvPhoto = document.getElementById("pv-photo");
   pvPhoto.style.setProperty("--ph-a", p.ph[0]);
   pvPhoto.style.setProperty("--ph-b", p.ph[1]);
   pvPhoto.innerHTML = p.img ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">` : "";
   document.getElementById("pv-cat").textContent = p.category;
   document.getElementById("pv-name").textContent = p.name;
-  document.getElementById("pv-price").textContent = `${p.price} EGP`;
+  document.getElementById("pv-price").textContent = p.soldOut ? "Sold out" : `${p.price} EGP`;
   document.getElementById("pv-desc").textContent = p.desc;
+ 
+  const pvAdd = document.getElementById("pv-add");
+  if (pvAdd){
+    pvAdd.textContent = p.soldOut ? "Sold out" : "Add to bag";
+    pvAdd.disabled = !!p.soldOut;
+    pvAdd.style.opacity = p.soldOut ? ".5" : "1";
+    pvAdd.style.pointerEvents = p.soldOut ? "none" : "auto";
+  }
+ 
   pvOverlay.classList.add("is-open");
   pvModal.classList.add("is-open");
 }
@@ -256,7 +322,7 @@ function closeQuickView(){
   pvOverlay.classList.remove("is-open");
   pvModal.classList.remove("is-open");
 }
-
+ 
 function initQuickView(){
   const pvOverlay = document.getElementById("pv-overlay");
   const pvClose = document.getElementById("pv-close");
@@ -270,7 +336,7 @@ function initQuickView(){
     openCart();
   });
 }
-
+ 
 /* ===================================================================
    Cart logic — drawer markup is included on every page
    =================================================================== */
@@ -294,7 +360,7 @@ function removeLine(id){
   saveCart();
   renderCart();
 }
-
+ 
 function renderCart(){
   const cartItemsEl = document.getElementById("cart-items");
   const cartEmptyEl = document.getElementById("cart-empty");
@@ -302,10 +368,10 @@ function renderCart(){
   const cartSubtotalEl = document.getElementById("cart-subtotal");
   const checkoutBtn = document.getElementById("checkout-btn");
   if (!cartItemsEl) return;
-
+ 
   const totalQty = cart.reduce((sum, l) => sum + l.qty, 0);
   if (cartCountEl) cartCountEl.textContent = totalQty;
-
+ 
   if (cart.length === 0){
     cartItemsEl.innerHTML = "";
     if (cartEmptyEl) cartItemsEl.appendChild(cartEmptyEl);
@@ -316,19 +382,19 @@ function renderCart(){
     }
     return;
   }
-
+ 
   if (checkoutBtn){
     checkoutBtn.style.opacity = "1";
     checkoutBtn.style.pointerEvents = "auto";
   }
-
+ 
   let subtotal = 0;
   cartItemsEl.innerHTML = "";
   cart.forEach(line => {
     const p = PRODUCTS.find(x => x.id === line.id);
     if (!p) return;
     subtotal += p.price * line.qty;
-
+ 
     const row = document.createElement("div");
     row.className = "cart-line";
     row.innerHTML = `
@@ -346,9 +412,9 @@ function renderCart(){
     `;
     cartItemsEl.appendChild(row);
   });
-
+ 
   if (cartSubtotalEl) cartSubtotalEl.textContent = `${subtotal} EGP`;
-
+ 
   cartItemsEl.querySelectorAll("[data-action]").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = btn.dataset.id;
@@ -358,28 +424,8 @@ function renderCart(){
       if (action === "remove") removeLine(id);
     });
   });
-
-  if (checkoutBtn){
-    const lines = cart.map(l => {
-      const p = PRODUCTS.find(x => x.id === l.id);
-      return `${l.qty} x ${p.name} (${p.price} EGP)`;
-    }).join("\n");
-    const msg = `New order from the website:\n${lines}\n\nSubtotal: ${subtotal} EGP`;
-    checkoutBtn.href = "#";
-    checkoutBtn.onclick = (e) => {
-      e.preventDefault();
-      sendOrderEmail("New Meris order", msg, checkoutBtn).then(sent => {
-        if (sent){
-          cart = [];
-          saveCart();
-          renderCart();
-          setTimeout(closeCart, 1200);
-        }
-      });
-    };
-  }
 }
-
+ 
 function openCart(){
   const cartDrawer = document.getElementById("cart-drawer");
   const cartOverlay = document.getElementById("cart-overlay");
@@ -394,7 +440,7 @@ function closeCart(){
   cartDrawer.classList.remove("is-open");
   cartOverlay.classList.remove("is-open");
 }
-
+ 
 function initCart(){
   const cartToggle = document.getElementById("cart-toggle");
   const cartClose = document.getElementById("cart-close");
@@ -404,7 +450,7 @@ function initCart(){
   cartClose.addEventListener("click", closeCart);
   cartOverlay.addEventListener("click", closeCart);
 }
-
+ 
 /* ===================================================================
    Mobile nav
    =================================================================== */
@@ -421,23 +467,116 @@ function initNav(){
     navToggle.setAttribute("aria-expanded", "false");
   }));
 }
-
+ 
 /* ===================================================================
    Init
    =================================================================== */
+/* ===================================================================
+   Checkout page (checkout.html) — order summary + details form
+   =================================================================== */
+function renderCheckoutSummary(){
+  const itemsEl = document.getElementById("checkout-items");
+  const subtotalEl = document.getElementById("checkout-subtotal");
+  const summaryEl = document.getElementById("checkout-summary") || (itemsEl ? itemsEl.closest(".checkout-summary") : null);
+  const submitBtn = document.getElementById("checkout-submit");
+  if (!itemsEl) return;
+ 
+  const isEmpty = cart.length === 0;
+  if (summaryEl) summaryEl.classList.toggle("is-empty", isEmpty);
+  const formEl = document.getElementById("checkout-form");
+  if (formEl) formEl.classList.toggle("is-disabled", isEmpty);
+ 
+  let subtotal = 0;
+  itemsEl.innerHTML = "";
+  cart.forEach(line => {
+    const p = PRODUCTS.find(x => x.id === line.id);
+    if (!p) return;
+    subtotal += p.price * line.qty;
+ 
+    const row = document.createElement("div");
+    row.className = "checkout-line";
+    row.innerHTML = `
+      <div class="checkout-line-photo" style="--ph-a:${p.ph[0]}; --ph-b:${p.ph[1]};"></div>
+      <div class="checkout-line-info">
+        <p class="checkout-line-name">${p.name}</p>
+        <p class="checkout-line-meta">${line.qty} × ${p.price} EGP</p>
+      </div>
+    `;
+    itemsEl.appendChild(row);
+  });
+ 
+  if (subtotalEl) subtotalEl.textContent = `${subtotal} EGP`;
+  return subtotal;
+}
+ 
+function initCheckoutForm(){
+  const form = document.getElementById("checkout-form");
+  if (!form) return;
+ 
+  renderCheckoutSummary();
+ 
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (cart.length === 0) return;
+ 
+    const nameInput = document.getElementById("checkout-name");
+    const phoneInput = document.getElementById("checkout-phone");
+    const addressInput = document.getElementById("checkout-address");
+    const errorEl = document.getElementById("checkout-error");
+    const submitBtn = document.getElementById("checkout-submit");
+ 
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const address = addressInput.value.trim();
+ 
+    const missing = [];
+    [ [nameInput, name], [phoneInput, phone], [addressInput, address] ].forEach(([el, val]) => {
+      el.classList.toggle("is-invalid", val === "");
+      if (val === "") missing.push(el);
+    });
+ 
+    if (missing.length){
+      if (errorEl) errorEl.classList.add("is-visible");
+      missing[0].focus();
+      return;
+    }
+    if (errorEl) errorEl.classList.remove("is-visible");
+ 
+    const lines = cart.map(l => {
+      const p = PRODUCTS.find(x => x.id === l.id);
+      return `${l.qty} x ${p.name} (${p.price} EGP)`;
+    }).join("\n");
+    const subtotal = cart.reduce((sum, l) => {
+      const p = PRODUCTS.find(x => x.id === l.id);
+      return sum + (p ? p.price * l.qty : 0);
+    }, 0);
+ 
+    const msg = `New order from the website:\n${lines}\n\nSubtotal: ${subtotal} EGP\n\nCustomer details:\nName: ${name}\nPhone: ${phone}\nDelivery address: ${address}`;
+ 
+    sendOrderEmail("New Meris order", msg, submitBtn).then(sent => {
+      if (sent){
+        cart = [];
+        saveCart();
+        renderCart();
+        form.reset();
+        renderCheckoutSummary();
+        setTimeout(() => { window.location.href = "index.html"; }, 1800);
+      }
+    });
+  });
+}
+ 
 document.addEventListener("DOMContentLoaded", () => {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  const shopGrid = document.getElementById("product-grid");
-  if (shopGrid) renderProductGrid(shopGrid, PRODUCTS);
-
+ 
   const featuredGrid = document.getElementById("featured-grid");
   if (featuredGrid) renderProductGrid(featuredGrid, PRODUCTS.filter(p => p.featured));
-
-  initFilters();
+ 
+  initShopPage();
   initQuickView();
   initCart();
   initNav();
+  initCheckoutForm();
   renderCart();
 });
