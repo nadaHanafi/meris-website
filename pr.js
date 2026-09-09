@@ -11,7 +11,7 @@ const PRODUCTS = [
     name: "Turquoise circle Necklace",
     category: "necklaces",
     price: 400,
-    img: "turquoise%20circle%20necklace.jpeg",
+    img: "turquoise circle necklace.jpeg",
 
     ph: ["#1F6E6B", "#0E3634"],
     desc: "A bold single-strand statement piece in hand-selected turquoise beads. Worn long over a plain neckline, it does the talking on its own.",
@@ -22,7 +22,7 @@ const PRODUCTS = [
     name: "earth love",
     category: "necklaces",
     price: 550,
-    img: "earth%20love%20necklace.jpeg",
+    img: "earth love necklace.jpeg",
     ph: ["#8B2635", "#3A0F16"],
     desc: "Delicate brown-toned beads . A softer statement for someone who likes their bold understated.",
     featured: true
@@ -32,7 +32,7 @@ const PRODUCTS = [
     name: "arabian night set",
     category: "necklaces",
     price: 760,
-    img: "arabian%20night set.jpeg",
+    img: "arabian night set.jpeg",
     ph: ["#241119", "#0C0509"],
     desc: "Faceted black beads on a fine gold-tone wire. Lightweight enough for all day, striking enough for the evening."
   },
@@ -41,7 +41,7 @@ const PRODUCTS = [
     name: "Moon Necklace",
     category: "necklaces",
     price: 200,
-    img: "moon%20stainless%20necklaces.jpeg",
+    img: "moon stainless necklaces.jpeg",
     ph: ["#4B1030", "#1C0817"],
     desc: "A moon stainless charm — quiet on its own, layered beautifully with anything bolder."
   },
@@ -60,7 +60,7 @@ const PRODUCTS = [
     name: "Sea pearls Beaded Choker",
     category: "chokers",
     price: 100,
-    img: "pearls%20neght%20chocker.jpeg",
+    img: "pearls neght chocker.jpeg",
     ph: ["#2D6B62", "#0F2E28"],
     desc: "Sits close to the collarbone in cool sea-glass tones. Pairs well with an open collar or bare shoulders."
   },
@@ -69,7 +69,7 @@ const PRODUCTS = [
     name: "golden hour necklace",
     category: "necklaces",
     price: 550,
-    img: "gold%20hour%20nechlace.jpeg",
+    img: "gold hour nechlace.jpeg",
     ph: ["#6E1F2E", "#2A0A11"],
     desc: "a golden hour beads on a fitted neclace length, gives the feeling of sunset.",
     featured: true
@@ -79,7 +79,7 @@ const PRODUCTS = [
     name: "mermaide necklace",
     category: "neclaces",
     price: 550,
-    img: "mermaide%20necklace.jpeg",
+    img: "mermaide necklace.jpeg",
     ph: ["#8A5A1E", "#3A250A"],
     desc: "a beab mermaide blue neclace . gives you the feeling of the sea."
   }
