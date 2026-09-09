@@ -1,0 +1,64 @@
+/* ===================================================================
+   MERIS — checkout.css
+   Page-specific styles for checkout.html only.
+   =================================================================== */
+.checkout-section{ max-width:var(--max); margin:0 auto; padding:80px var(--edge) 120px; }
+.checkout-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+@media (max-width:820px){ .checkout-grid{ grid-template-columns:1fr; } }
+
+.checkout-summary, .checkout-form-wrap{
+  background:var(--ivory-dim); border:1px solid rgba(75,16,48,.12);
+  border-radius:2px; padding:34px;
+}
+.checkout-summary h2, .checkout-form-wrap h2{
+  font-size:1.3rem; color:var(--wine); margin-bottom:22px;
+}
+
+.checkout-line{
+  display:flex; gap:14px; padding:14px 0; border-bottom:1px solid rgba(75,16,48,.1);
+}
+.checkout-line-photo{
+  width:56px; height:66px; border-radius:2px; flex-shrink:0;
+  background:linear-gradient(155deg, var(--ph-a, #641A44), var(--ph-b, #240817));
+}
+.checkout-line-info{ flex:1; }
+.checkout-line-name{ font-family:var(--display); font-size:1rem; color:var(--ink); }
+.checkout-line-meta{ font-size:.82rem; color:var(--ink-soft); margin-top:2px; }
+
+.checkout-subtotal{
+  display:flex; justify-content:space-between; align-items:center;
+  margin-top:20px; padding-top:18px; border-top:1px solid rgba(75,16,48,.15);
+  font-family:var(--display); font-size:1.1rem; color:var(--wine);
+}
+
+.checkout-empty-note{
+  display:none; font-size:.9rem; color:var(--ink-soft); margin-top:16px; text-align:center;
+}
+.checkout-empty-note a{ color:var(--wine); border-bottom:1px solid var(--gold); }
+.checkout-summary.is-empty .checkout-empty-note{ display:block; }
+.checkout-summary.is-empty #checkout-items,
+.checkout-summary.is-empty .checkout-subtotal{ display:none; }
+
+/* ===================================================================
+   FORM
+   =================================================================== */
+.checkout-form{ display:flex; flex-direction:column; gap:20px; }
+.form-row{ display:flex; flex-direction:column; gap:8px; }
+.form-row label{ font-size:.82rem; letter-spacing:.03em; color:var(--wine); }
+.form-row input, .form-row textarea{
+  font-family:var(--body); font-size:.95rem; color:var(--ink);
+  background:#fff; border:1px solid rgba(75,16,48,.2);
+  border-radius:2px; padding:12px 14px; resize:vertical;
+}
+.form-row input:focus, .form-row textarea:focus{
+  outline:none; border-color:var(--gold);
+}
+.form-row input.is-invalid, .form-row textarea.is-invalid{ border-color:#c0555a; }
+
+.form-error{
+  font-size:.82rem; color:#a33; margin:-8px 0 0; display:none;
+}
+.form-error.is-visible{ display:block; }
+.form-note{ font-size:.78rem; color:var(--ink-soft); text-align:center; }
+
+.checkout-form.is-disabled .btn{ opacity:.5; pointer-events:none; }
