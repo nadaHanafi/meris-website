@@ -50,7 +50,7 @@ const PRODUCTS = [
     name: "Layered Charm Necklace",
     category: "necklaces",
     price: 550,
-    img: "seashell%20necklace.jpeg",
+    img: "seashell necklace.jpeg",
     ph: ["#6B4A1F", "#2A1A0A"],
     desc: "Multiple strands finished with mixed medallion charms. The most statement piece in the collection — meant to be seen.",
     featured: true
